@@ -14,7 +14,7 @@ export class AppComponent {
 
   openRegistrationModal(): void {
     const dialogRef = this.dialog.open(RegisterStudentModalComponent, {
-      width: '400px',
+      width: '500px',
     });
   
     dialogRef.afterClosed().subscribe(result => {

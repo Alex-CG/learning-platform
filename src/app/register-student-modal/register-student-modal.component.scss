@@ -1,0 +1,22 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.flex-item {
+  flex: 1;
+  margin-right: 16px;
+}
+
+@media (max-width: 600px) {
+  .form-row .flex-item {
+    flex: 0 0 100%;
+    margin-right: 0;
+  }
+}
