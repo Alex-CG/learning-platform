@@ -31,6 +31,7 @@
         <input matInput formControlName="dob" [matDatepicker]="dobPicker" placeholder="Date of Birth" name="dob" required>
         <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
         <mat-datepicker #dobPicker></mat-datepicker>
+        <mat-error *ngIf="form.get('dob')?.hasError('serverError')">{{ form.get('dob')?.getError('serverError') }}</mat-error>
       </mat-form-field>
     </div>
 
@@ -38,6 +39,7 @@
       <mat-form-field class="flex-item">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" placeholder="Ex. joe.doe@gmail.com" name="email" required>
+        <mat-error *ngIf="form.get('email')?.hasError('serverError')">{{ form.get('email')?.getError('serverError') }}</mat-error>
       </mat-form-field>
     </div>
 

@@ -16,7 +16,7 @@ export class RegisterStudentModalComponent implements OnInit {
   lastName: FormControl = new FormControl('', [Validators.required]);
   address: FormControl = new FormControl('', [Validators.required]);
   phoneNumber: FormControl = new FormControl('', [Validators.required]);
-  dob: FormControl = new FormControl(new Date(), [Validators.required]);
+  dob: FormControl = new FormControl('', [Validators.required]);
   email: FormControl = new FormControl('', [Validators.required, Validators.email]);
 
   constructor(public dialogRef: MatDialogRef<RegisterStudentModalComponent>, private formBuilder: FormBuilder, private registrationService: RegistrationService) {
@@ -49,14 +49,16 @@ export class RegisterStudentModalComponent implements OnInit {
 
     this.registrationService.register(data).subscribe({
       next: (response) => {
-        alert('Registered!');
+        this.dialogRef.close();
       },
-      error: (error) => {
-        alert('Error!');
+      error: (response) => {
+        if (!response.error.code) {
+          alert('Unknown error ocurred!');
+          return;
+        }
+        this.form.get(response.error.field)?.setErrors({ serverError: response.error.message });
       }
     });
-
-    this.dialogRef.close();
   }
 
   closeDialog(): void {
